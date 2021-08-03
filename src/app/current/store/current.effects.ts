@@ -1,27 +1,39 @@
 import { Injectable } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { EMPTY, of } from 'rxjs';
-import { catchError, map, mergeMap, tap, withLatestFrom } from 'rxjs/operators';
+import { catchError, map, mergeMap, switchMap, tap, withLatestFrom } from 'rxjs/operators';
 import { IncrementBy } from 'src/app/legacy/store/legacy.actions';
+import { RandomService } from 'src/app/random.service';
+import { setValue, incrementBy } from './current.actions';
 import { CurrentState } from './current.reducer';
 import { getCurrentCount } from './current.selectors';
 
 @Injectable()
 export class CurrentEffects {
 
-
-  loadMovies$ = createEffect(() => this.actions$.pipe(
-    ofType('[Current] IncrementBy'),
-    withLatestFrom(this.store.select(getCurrentCount)),
-    tap(([action, counter]: [IncrementBy, Number]) => {
-      console.log({ action, counter })
+  incrementByHandler$ = createEffect(() => this.actions$.pipe(
+    ofType(incrementBy),
+    concatLatestFrom(() => this.store.select(getCurrentCount)),
+    switchMap(([action, counter]) => {
+      return this.randomService.getRandomNumber()
+        .pipe(
+          tap(randomNumber => console.log({
+            currentValue: counter,
+            randomNumber,
+            increment: action.increment
+          })),
+          map(randomNumber => setValue({
+            value: randomNumber + counter + action.increment
+          }))
+        )
     })
-  ), { dispatch: false });
+  ));
 
   constructor(
     private actions$: Actions,
-    private readonly store: Store<CurrentState>
+    private readonly store: Store<CurrentState>,
+    private readonly randomService: RandomService
   ) { }
 
 }

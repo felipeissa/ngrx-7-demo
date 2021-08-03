@@ -12,6 +12,7 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { LegacyModule } from './legacy/legacy.module';
 import { CurrentModule } from './current/current.module';
+import { EffectModule } from './effect/effect.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { CurrentModule } from './current/current.module';
     MatIconModule,
     AppRoutingModule,
     LegacyModule,
-    CurrentModule
+    CurrentModule,
+    EffectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

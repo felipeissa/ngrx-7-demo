@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { map } from 'rxjs/operators';
-import { decrement, increment, incrementBy, reset } from './current.actions';
+import { decrement, increment, incrementBy, reset, setValue } from './current.actions';
 
 
 export const currentFeatureKey = 'current';
@@ -19,6 +19,7 @@ export const currentReducer = createReducer(
   on(increment, state => ({ ...state, counter: state.counter + 1 })),
   on(decrement, state => ({ ...state, counter: state.counter - 1 })),
   on(reset, () => initialState),
-  on(incrementBy, (state, action) => ({ ...state, counter: state.counter + action.increment }))
+  on(incrementBy, (state, action) => ({ ...state, counter: 0 })),
+  on(setValue, (state, action) => ({ counter: action.value }))
 );
 

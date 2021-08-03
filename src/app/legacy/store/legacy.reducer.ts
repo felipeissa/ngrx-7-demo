@@ -25,10 +25,17 @@ export function legacyReducer(state = initialState, action: LegacyActionTypes) {
 
     case LegacyActions.Reset:
       return initialState;
+
     case LegacyActions.IncrementBy:
       return {
         ...state,
-        counter: state.counter + action.payload.increment
+        counter: 0
+      };
+
+    case LegacyActions.SetValue:
+      return {
+        ...state,
+        counter: action.payload.value
       };
 
     default:

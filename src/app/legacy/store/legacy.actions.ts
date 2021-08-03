@@ -1,10 +1,11 @@
 import { Action } from "@ngrx/store";
 
 export enum LegacyActions {
-  Increment = '[Counter Component] Increment',
-  Decrement = '[Counter Component] Decrement',
-  Reset = '[Counter Component] Reset',
-  IncrementBy = '[Counter Component] IncrementBy',
+  Increment = '[Legacy] Increment',
+  Decrement = '[Legacy] Decrement',
+  Reset = '[Legacy] Reset',
+  IncrementBy = '[Legacy] IncrementBy',
+  SetValue = '[Legacy] SetValue',
 }
 
 export class Increment implements Action {
@@ -25,4 +26,10 @@ export class IncrementBy implements Action {
   public constructor(public payload: { increment: number }) { };
 }
 
-export type LegacyActionTypes = Increment | Decrement | Reset | IncrementBy;
+export class SetValue implements Action {
+  readonly type = LegacyActions.SetValue;
+
+  public constructor(public payload: { value: number }) { };
+}
+
+export type LegacyActionTypes = Increment | Decrement | Reset | IncrementBy | SetValue;

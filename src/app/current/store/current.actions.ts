@@ -14,3 +14,7 @@ export const reset = createAction(
 export const incrementBy = createAction(
   '[Current] IncrementBy', props<{ increment: number }>()
 );
+
+export const setValue = createAction(
+  '[Current] setValue', props<{ value: number }>()
+);
