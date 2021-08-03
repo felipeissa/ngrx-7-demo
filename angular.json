@@ -107,5 +107,8 @@
       }
     }
   },
-  "defaultProject": "rxjs-sample"
+  "defaultProject": "rxjs-sample",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }

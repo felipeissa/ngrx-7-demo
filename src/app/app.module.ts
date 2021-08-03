@@ -11,6 +11,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { LegacyModule } from './legacy/legacy.module';
+import { CurrentModule } from './current/current.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { LegacyModule } from './legacy/legacy.module';
     MatToolbarModule,
     MatIconModule,
     AppRoutingModule,
-    LegacyModule
+    LegacyModule,
+    CurrentModule
   ],
   providers: [],
   bootstrap: [AppComponent]
