@@ -9,7 +9,7 @@ import { LegacyEffects } from './legacy.effects';
 import { legacyReducer, LegacyState } from './legacy.reducer';
 import { getCounter } from './legacy.selectors';
 import { cold, hot } from 'jasmine-marbles';
-import { RandomService } from 'src/app/random.service';
+import { RandomService } from '../../random.service';
 
 describe('LegacyEffects', () => {
   let actions$: Observable<any>;

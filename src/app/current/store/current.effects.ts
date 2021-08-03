@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { EMPTY, of } from 'rxjs';
-import { catchError, map, mergeMap, switchMap, tap, withLatestFrom } from 'rxjs/operators';
-import { IncrementBy } from 'src/app/legacy/store/legacy.actions';
-import { RandomService } from 'src/app/random.service';
+import { map, switchMap, tap } from 'rxjs/operators';
+import { RandomService } from '../../random.service';
 import { setValue, incrementBy } from './current.actions';
 import { CurrentState } from './current.reducer';
 import { getCurrentCount } from './current.selectors';

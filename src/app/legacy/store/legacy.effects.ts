@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
-import { RandomService } from 'src/app/random.service';
+import { RandomService } from '../../random.service';
 import { IncrementBy, LegacyActions, SetValue } from './legacy.actions';
 import { LegacyState } from './legacy.reducer';
 import { getCounter } from './legacy.selectors';

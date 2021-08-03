@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
-import { RandomService } from 'src/app/random.service';
+import { RandomService } from '../../random.service';
 import { multipleResponseInputAction, multipleResponseOutput1Action, multipleResponseOutput2Action, noResponseAction, treatedErrorAction, treatedErrorActionOutput, untreatedErrorAction } from './effect.actions';
 
 

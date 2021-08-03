@@ -3,7 +3,7 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { provideMockStore } from '@ngrx/store/testing';
 import { cold, hot } from 'jasmine-marbles';
 import { Observable, of } from 'rxjs';
-import { RandomService } from 'src/app/random.service';
+import { RandomService } from '../../random.service';
 import { incrementBy, setValue } from './current.actions';
 
 import { CurrentEffects } from './current.effects';
