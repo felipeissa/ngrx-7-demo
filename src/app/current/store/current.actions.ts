@@ -16,5 +16,5 @@ export const incrementBy = createAction(
 );
 
 export const setValue = createAction(
-  '[Current] setValue', props<{ value: number }>()
+  '[Current] SetValue', props<{ value: number }>()
 );
