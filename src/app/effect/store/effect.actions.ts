@@ -27,3 +27,11 @@ export const treatedErrorAction = createAction(
 export const treatedErrorActionOutput = createAction(
   '[Effect] Treated error action output'
 )
+
+export const synchronousActionInput = createAction(
+  '[Effect] Synchronous action input'
+)
+
+export const synchronousActionOutput = createAction(
+  '[Effect] Synchronous action output'
+)

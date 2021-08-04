@@ -30,4 +30,10 @@ export class EffectComponent implements OnInit {
   treatedError() {
     this.effectFacadeService.treatedErrorAction()
   }
+
+  syncAction() {
+    console.log('before sync action');
+    this.effectFacadeService.synchronousHandleAction()
+      .subscribe(() => console.log('when action actually returns'));
+  }
 }

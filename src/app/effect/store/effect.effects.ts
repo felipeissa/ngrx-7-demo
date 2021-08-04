@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { of } from 'rxjs';
+import { of, timer } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { RandomService } from '../../random.service';
-import { multipleResponseInputAction, multipleResponseOutput1Action, multipleResponseOutput2Action, noResponseAction, treatedErrorAction, treatedErrorActionOutput, untreatedErrorAction } from './effect.actions';
+import { multipleResponseInputAction, multipleResponseOutput1Action, multipleResponseOutput2Action, noResponseAction, synchronousActionInput, synchronousActionOutput, treatedErrorAction, treatedErrorActionOutput, untreatedErrorAction } from './effect.actions';
 
 
 
 @Injectable()
 export class EffectEffects {
 
-  incrementByChecker$ = createEffect(() => this.actions$.pipe(
+  noResponseAction$ = createEffect(() => this.actions$.pipe(
     ofType(noResponseAction),
     tap(() => console.log('No response action was fired'))
   ), { dispatch: false });
@@ -39,6 +39,14 @@ export class EffectEffects {
         catchError(error => of(treatedErrorActionOutput()))
       )
     )
+  ));
+
+  syncActionHandler$ = createEffect(() => this.actions$.pipe(
+    ofType(synchronousActionInput),
+    switchMap(() => timer(3000).pipe(
+      tap(() => console.log('on sync action handler')),
+      map(() => synchronousActionOutput())
+    ))
   ));
 
   constructor(

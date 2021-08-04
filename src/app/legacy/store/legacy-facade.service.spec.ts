@@ -1,4 +1,3 @@
-import { asLiteral } from '@angular/compiler/src/render3/view/util';
 import { TestBed } from '@angular/core/testing';
 import { Store } from '@ngrx/store';
 import { provideMockStore } from '@ngrx/store/testing';
@@ -66,9 +65,8 @@ describe('LegacyFacadeService', () => {
   })
 
   describe('selectors', () => {
-    let spy;
     beforeEach(() => {
-      spy = spyOn(store, 'select');
+      spyOn(store, 'select');
     });
 
     it('should select getCounter', () => {

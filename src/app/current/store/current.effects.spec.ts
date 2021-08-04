@@ -42,6 +42,5 @@ describe('CurrentEffects', () => {
     const expected = cold('b', { b: completion });
 
     expect(effects.incrementByHandler$).toBeObservable(expected);
-
   });
 });
