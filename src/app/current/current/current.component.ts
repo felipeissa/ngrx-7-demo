@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Observable, ReplaySubject } from 'rxjs';
+import { first, take, takeUntil } from 'rxjs/operators';
 import { CurrentFacadeService } from '../store/current-facade.service';
 
 @Component({
@@ -7,16 +8,33 @@ import { CurrentFacadeService } from '../store/current-facade.service';
   templateUrl: './current.component.html',
   styleUrls: ['./current.component.scss']
 })
-export class CurrentComponent implements OnInit {
+export class CurrentComponent implements OnInit, OnDestroy {
 
-  count$: Observable<number> = this.currentFacadeService.getCounter();
+  count: number = 0;
   customIncrement: string = "1";
+  destroyed: ReplaySubject<boolean> = new ReplaySubject();
 
   constructor(
     private readonly currentFacadeService: CurrentFacadeService
   ) { }
 
   ngOnInit(): void {
+    this.getCounter();
+  }
+
+  ngOnDestroy() {
+    this.destroyed.next(true);
+    this.destroyed.complete();
+  }
+
+  getCounter() {
+    this.currentFacadeService.getCounter()
+      .pipe(
+        // first()
+        // take(1)
+        takeUntil(this.destroyed)
+      )
+      .subscribe(counter => this.count = counter);
   }
 
   increment() {
