@@ -23,7 +23,7 @@ import { EffectModule } from './effect/effect.module';
     BrowserAnimationsModule,
     StoreModule.forRoot({}, {}),
     EffectsModule.forRoot([]),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: false }),
     MatToolbarModule,
     MatIconModule,
     AppRoutingModule,
